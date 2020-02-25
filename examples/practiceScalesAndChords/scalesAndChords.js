@@ -298,3 +298,22 @@ setRoot(rootNoteNumber);
 let scaleSequence = generateMajorScale(rootNoteNumber);
 let targetChord = randomChord(majorChordDegrees);
 let targetChord2 = transposeChord(-12);
+
+function handleSetRoot()
+{
+	let rootSetting = document.getElementById("rootSetting").value;
+	let rootSharpFlatSetting = document.getElementById("rootSharpFlatSetting").value;
+	let rootNoteNumber = parseInt(rootSetting) + parseInt(rootSharpFlatSetting);
+	setRoot(rootNoteNumber);
+	scaleSequence = generateMajorScale(rootNoteNumber);
+	targetChord = randomChord(majorChordDegrees);
+	targetChord2 = transposeChord(-12);
+}
+
+if (mode === "chords")
+{
+	for( var id of ["rootSetting", "rootSharpFlatSetting"])
+	{
+		document.getElementById(id).addEventListener("change", handleSetRoot);
+	}
+}
